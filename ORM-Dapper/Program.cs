@@ -29,14 +29,15 @@ var productRepository = new DapperProductRepository(conn);
 
 var productToUpdate = productRepository.GetProduct(940);
 
-productToUpdate.Name = "UPDATED";
+/* productToUpdate.Name = "UPDATED";
 productToUpdate.Price = 20.00;
 productToUpdate.CategoryID = 1;
 productToUpdate.OnSale = false;
 productToUpdate.StockLevel = 1;
 
-productRepository.UpdateProduct(productToUpdate);
+productRepository.UpdateProduct(productToUpdate); */
 
+productRepository.DeleteProduct(941);
 var products = productRepository.GetAllProducts();
 foreach (var product in products)
 {

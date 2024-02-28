@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,6 +44,12 @@ namespace ORM_Dapper
                     stock = product.StockLevel,
                     
                 });
+        }
+        public void DeleteProduct(int id)
+        {
+            _conn.Execute("DELETE FROM sales WHERE ProductID = @id;", new { id = id });
+            _conn.Execute("DELETE FROM reviews WHERE ProductID = @id;", new { id = id });
+            _conn.Execute("DELETE FROM products WHERE ProductID = @id;", new { id = id });
 
         }
     }
