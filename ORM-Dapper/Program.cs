@@ -11,31 +11,31 @@ var config = new ConfigurationBuilder()
 string connString = config.GetConnectionString("DefaultConnection");
 
 IDbConnection conn = new MySqlConnection(connString);
-#region
-//var departmentRepo = new DapperDepartmentRepository(conn);
 
-//departmentRepo.InsertDepartment("John's New Department");
+var departmentRepo = new DapperDepartmentRepository(conn);
 
-//var departments = departmentRepo.GetAllDepartments();
+departmentRepo.InsertDepartment("John's New Department");
 
-//foreach (var department in departments)
-//{
-//    Console.WriteLine(department.DepartmentID);
-//   Console.WriteLine(department.Name);
-//}
-#endregion
+var departments = departmentRepo.GetAllDepartments();
+
+foreach (var department in departments)
+{
+    Console.WriteLine(department.DepartmentID);
+   Console.WriteLine(department.Name);
+}
+
 
 var productRepository = new DapperProductRepository(conn);
 
 var productToUpdate = productRepository.GetProduct(940);
 
-/* productToUpdate.Name = "UPDATED";
+productToUpdate.Name = "UPDATED";
 productToUpdate.Price = 20.00;
 productToUpdate.CategoryID = 1;
 productToUpdate.OnSale = false;
 productToUpdate.StockLevel = 1;
 
-productRepository.UpdateProduct(productToUpdate); */
+productRepository.UpdateProduct(productToUpdate); 
 
 productRepository.DeleteProduct(941);
 var products = productRepository.GetAllProducts();
